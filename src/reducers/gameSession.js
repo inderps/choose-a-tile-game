@@ -41,6 +41,10 @@ const initialState = {
 };
 
 function chooseTile(state, rowIndex, tileIndex) {
+  if (state.get('status') === STATUS.GAME_OVER) {
+    return state;
+  }
+
   const currentRoundIndex = state.get('currentRoundIndex');
   const rounds = state.get('rounds');
   const correctAnswer = rounds.get(currentRoundIndex).get('correctAnswer');

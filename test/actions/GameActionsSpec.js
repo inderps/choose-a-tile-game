@@ -40,5 +40,9 @@ describe('GameActions', () => {
 
     expect(store.getState().get('currentRoundIndex')).to.eql(2);
     expect(store.getState().get('status')).to.eql(STATUS.GAME_OVER);
+
+    store.dispatch(chooseTile(1, 1));
+
+    expect(store.getState().get('status')).to.eql(STATUS.GAME_OVER);
   });
 });
