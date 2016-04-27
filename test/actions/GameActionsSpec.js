@@ -27,13 +27,19 @@ describe('GameActions', () => {
   });
 
 
-  it('should set currentRoundIndex as -1 if all rounds are completed', () => {
+  it('should not update currentRoundIndex if all rounds are completed', () => {
     expect(store.getState().get('currentRoundIndex')).to.eql(0);
 
     store.dispatch(chooseTile(0, 1));
     store.dispatch(chooseTile(1, 0));
     store.dispatch(chooseTile(1, 1));
 
-    expect(store.getState().get('currentRoundIndex')).to.eql(-1);
+    expect(store.getState().get('currentRoundIndex')).to.eql(2);
+
+    store.dispatch(chooseTile(1, 1));
+    store.dispatch(chooseTile(1, 1));
+    store.dispatch(chooseTile(1, 1));
+
+    expect(store.getState().get('currentRoundIndex')).to.eql(2);
   });
 });

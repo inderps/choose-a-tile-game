@@ -61,15 +61,15 @@ const initialState = {
 
 function chooseTile(state, rowIndex, tileIndex) {
   const currentRoundIndex = state.get('currentRoundIndex');
-  const currentRound = state.get('rounds').get(currentRoundIndex);
+  const rounds = state.get('rounds');
+  const currentRound = rounds.get(currentRoundIndex);
   if (currentRound.get('rows').get(rowIndex)
   .get('tiles').get(tileIndex)
   .get('isCorrect')) {
-    let newCurrentRoundIndex = currentRoundIndex + 1;
-    if (newCurrentRoundIndex === state.get('rounds').size) {
-      newCurrentRoundIndex = -1;
+    if (currentRoundIndex === rounds.size - 1) {
+      return state;
     }
-    return state.set('currentRoundIndex', newCurrentRoundIndex);
+    return state.set('currentRoundIndex', currentRoundIndex + 1);
   }
   return state;
 }
