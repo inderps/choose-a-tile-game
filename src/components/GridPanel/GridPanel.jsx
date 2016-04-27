@@ -12,7 +12,7 @@ export default function GridPanel(props) {
     <div className="grid-panel">
       {
         currentRound.get('rows').map((row, index) =>
-          (<GridRow row={row} key={index} />)
+          (<GridRow row={row} key={index} rowIndex={index} chooseTile={props.actions.chooseTile} />)
         )
       }
     </div>

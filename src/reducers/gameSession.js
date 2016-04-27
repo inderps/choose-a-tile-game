@@ -52,6 +52,8 @@ const initialState = {
         isCorrect: true,
       }, {
         url: '/tiles/323.jpg',
+      }, {
+        url: '/tiles/324.jpg',
       }],
     }],
   }],

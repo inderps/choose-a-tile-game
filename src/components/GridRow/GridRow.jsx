@@ -12,7 +12,13 @@ function GripRow(props) {
     <div className="grid-row">
       {
         props.row.get('tiles').map((tile, index) =>
-          (<GridTile url={tile.get('url')} key={index} width={width} />)
+          (<GridTile url={tile.get('url')}
+            key={index}
+            width={width}
+            rowIndex={props.rowIndex}
+            tileIndex={index}
+            chooseTile={props.chooseTile}
+          />)
         )
       }
     </div>
@@ -21,7 +27,8 @@ function GripRow(props) {
 
 GripRow.propTypes = {
   row: PropTypes.object,
-  actions: PropTypes.object,
+  rowIndex: PropTypes.number,
+  chooseTile: PropTypes.func,
 };
 
 export default GripRow;
