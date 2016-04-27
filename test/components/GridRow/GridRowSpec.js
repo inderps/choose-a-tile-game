@@ -9,7 +9,7 @@ describe('GridRow', () => {
   beforeEach(() => {
     component = renderComponent(GridRow, {
       row: new Map({
-        tiles: new List([new Map({ url: 'some-url'} ), new Map({ url: 'some-url'} )]),
+        tiles: new List(['url-1', 'url-2']),
       })
     });
   });

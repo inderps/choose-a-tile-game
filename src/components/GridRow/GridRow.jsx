@@ -12,7 +12,7 @@ function GripRow(props) {
     <div className="grid-row">
       {
         props.row.get('tiles').map((tile, index) =>
-          (<GridTile url={tile.get('url')}
+          (<GridTile url={tile}
             key={index}
             width={width}
             rowIndex={props.rowIndex}

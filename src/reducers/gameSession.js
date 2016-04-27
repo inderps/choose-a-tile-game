@@ -5,70 +5,48 @@ const initialState = {
   currentRoundIndex: 0,
   rounds: [{
     rows: [{
-      tiles: [{
-        url: 'tiles/111.jpg',
-      }, {
-        url: 'tiles/112.jpg',
-        isCorrect: true,
-      }],
+      tiles: ['tiles/111.jpg', 'tiles/112.jpg'],
     }, {
-      tiles: [{
-        url: 'tiles/121.jpg',
-      }, {
-        url: 'tiles/122.jpg',
-      }],
+      tiles: ['tiles/121.jpg', 'tiles/122.jpg'],
     }],
+    correctAnswer: {
+      rowIndex: 0,
+      tileIndex: 1,
+    },
   }, {
     rows: [{
-      tiles: [{
-        url: 'tiles/211.jpg',
-      }, {
-        url: 'tiles/212.jpg',
-      }],
+      tiles: ['tiles/211.jpg', 'tiles/212.jpg'],
     }, {
-      tiles: [{
-        url: 'tiles/221.jpg',
-        isCorrect: true,
-      }],
+      tiles: ['tiles/221.jpg'],
     }, {
-      tiles: [{
-        url: 'tiles/231.jpg',
-      }, {
-        url: 'tiles/232.jpg',
-      }, {
-        url: 'tiles/233.jpg',
-      }],
+      tiles: ['tiles/231.jpg', 'tiles/232.jpg', 'tiles/233.jpg'],
     }],
+    correctAnswer: {
+      rowIndex: 1,
+      tileIndex: 0,
+    },
   }, {
     rows: [{
-      tiles: [{
-        url: 'tiles/311.jpg',
-      }],
+      tiles: ['tiles/311.jpg'],
     }, {
-      tiles: [{
-        url: 'tiles/321.jpg',
-      }, {
-        url: 'tiles/322.jpg',
-        isCorrect: true,
-      }, {
-        url: 'tiles/323.jpg',
-      }, {
-        url: 'tiles/324.jpg',
-      }],
+      tiles: ['tiles/321.jpg', 'tiles/322.jpg', 'tiles/323.jpg', 'tiles/324.jpg'],
     }],
+    correctAnswer: {
+      rowIndex: 1,
+      tileIndex: 2,
+    },
   }],
 };
 
 function chooseTile(state, rowIndex, tileIndex) {
   const currentRoundIndex = state.get('currentRoundIndex');
   const rounds = state.get('rounds');
-  const currentRound = rounds.get(currentRoundIndex);
-  if (currentRound.get('rows').get(rowIndex)
-  .get('tiles').get(tileIndex)
-  .get('isCorrect')) {
-    if (currentRoundIndex === rounds.size - 1) {
-      return state;
-    }
+  if (currentRoundIndex === rounds.size - 1) {
+    return state;
+  }
+  const correctAnswer = rounds.get(currentRoundIndex).get('correctAnswer');
+  if (correctAnswer.get('rowIndex') === rowIndex &&
+      correctAnswer.get('tileIndex') === tileIndex) {
     return state.set('currentRoundIndex', currentRoundIndex + 1);
   }
   return state;

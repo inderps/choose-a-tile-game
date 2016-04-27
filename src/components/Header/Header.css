@@ -1,0 +1,13 @@
+.header {
+  width: 100%;
+  height: 3rem;
+  background: #272b30;
+  padding-left: 1rem;
+  box-sizing: border-box;
+}
+
+.header h1 {
+  color: #c8c8c8;
+  line-height: 3rem;
+  margin: 0;
+}
