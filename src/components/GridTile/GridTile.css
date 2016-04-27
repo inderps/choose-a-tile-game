@@ -1,3 +1,8 @@
 .grid-tile {
   vertical-align: middle;
+  cursor: pointer;
+}
+
+.grid-tile:hover {
+  opacity: 0.5;
 }
