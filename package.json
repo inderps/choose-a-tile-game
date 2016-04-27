@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "webpack-dev-server --config ./config/webpack.config.dev.js --hot --inline --progress",
-    "build": "NODE_ENV=production webpack -p --progress"
+    "build": "NODE_ENV=production webpack -p --config ./config/webpack.config.prod.js --progress"
   },
   "engines": {
     "node": "5.x"
