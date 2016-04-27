@@ -1,0 +1,20 @@
+{
+  "name": "choose-a-tile-game",
+  "version": "1.0.0",
+  "description": "A small game built using react & redux",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com/inderps/choose-a-tile-game"
+  },
+  "engines": {
+    "node": "5.x"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}
