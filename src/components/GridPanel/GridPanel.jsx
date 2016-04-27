@@ -1,19 +1,27 @@
 import React, { PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as GameActions from '../../actions/GameActions';
+import * as GameActions from './../../actions/GameActions';
+import GridRow from './../GridRow/GridRow';
 import './GridPanel.css';
 
-export default function GridPanel() {
+export default function GridPanel(props) {
+  const currentRound = props.gameSession.get('rounds')
+                                        .get(props.gameSession.get('currentRoundIndex'));
   return (
-    <div className="gridpanel">
+    <div className="grid-panel">
+      {
+        currentRound.get('rows').map((row, index) =>
+          (<GridRow row={row} key={index} />)
+        )
+      }
     </div>
   );
 }
 
 function mapStateToProps(state) {
   return {
-    gameSession: state.gameSession,
+    gameSession: state,
   };
 }
 
