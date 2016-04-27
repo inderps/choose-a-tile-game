@@ -53,7 +53,6 @@ module.exports = {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract('style', 'css', 'postcss-loader'),
       },
-      // Inline base64 URLs for <=8k images, direct URLs for the rest
       {
         test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
         loader: 'url-loader?limit=8192',
@@ -62,9 +61,7 @@ module.exports = {
   },
   plugins: plugins,
   postcss: function () {
-    return [autoprefixer({
-      browsers: ['last 2 versions'],
-    })];
+    return [autoprefixer];
   },
   devServer: {
     contentBase: path.resolve(__dirname, '../build'),
