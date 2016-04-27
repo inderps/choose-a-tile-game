@@ -1,7 +1,7 @@
 import { fromJS } from 'immutable';
 
 const initialState = {
-  currentRound: 0,
+  currentRoundIndex: 1,
   rounds: [{
     rows: [{
       tiles: [{
@@ -31,11 +31,11 @@ const initialState = {
       }],
     }, {
       tiles: [{
-        url: '/tiles/221.jpg',
+        url: '/tiles/231.jpg',
       }, {
-        url: '/tiles/222.jpg',
+        url: '/tiles/232.jpg',
       }, {
-        url: '/tiles/223.jpg',
+        url: '/tiles/233.jpg',
       }],
     }],
   }, {
