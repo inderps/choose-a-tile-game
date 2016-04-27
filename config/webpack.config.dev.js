@@ -6,14 +6,14 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 // App files location
 const PATHS = {
   app: path.resolve(__dirname, '../src'),
-  build: path.resolve(__dirname, '../build')
+  build: path.resolve(__dirname, '../build'),
 };
 
 const plugins = [
   new webpack.NoErrorsPlugin(),
   new webpack.DefinePlugin({
     'process.env.NODE_ENV': JSON.stringify('development'),
-    __DEV__: JSON.stringify(JSON.parse(process.env.DEBUG || 'false'))
+    __DEV__: JSON.stringify(JSON.parse(process.env.DEBUG || 'false')),
   }),
   new webpack.optimize.OccurenceOrderPlugin(),
   new ExtractTextPlugin('app.css', {
@@ -22,26 +22,32 @@ const plugins = [
 ];
 
 module.exports = {
-  env : process.env.NODE_ENV,
+  env: process.env.NODE_ENV,
   entry: [path.resolve(PATHS.app, 'main.js')],
   output: {
     path: PATHS.build,
     filename: 'bundle.js',
-    publicPath: '/'
+    publicPath: '/',
   },
   stats: {
     colors: true,
-    reasons: true
+    reasons: true,
   },
   resolve: {
-    extensions: ['', '.js', '.jsx', '.css']
+    extensions: ['', '.js', '.jsx', '.css'],
   },
   module: {
+    preLoaders: [{
+      test: /\.(js|jsx)$/,
+      exclude: /node_modules/,
+      loader: 'eslint-loader',
+    }],
     loaders: [
       {
-        test: /\.js?$/,
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
         loaders: ['react-hot', 'babel'],
-        include: PATHS.app
+        include: PATHS.app,
       },
       {
         test: /\.css$/,
@@ -50,19 +56,19 @@ module.exports = {
       // Inline base64 URLs for <=8k images, direct URLs for the rest
       {
         test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
-        loader: 'url-loader?limit=8192'
-      }
-    ]
+        loader: 'url-loader?limit=8192',
+      },
+    ],
   },
   plugins: plugins,
   postcss: function () {
     return [autoprefixer({
-      browsers: ['last 2 versions']
+      browsers: ['last 2 versions'],
     })];
   },
   devServer: {
     contentBase: path.resolve(__dirname, '../build'),
-    port: 3000
+    port: 3000,
   },
-  devtool: 'eval'
+  devtool: 'eval',
 };
