@@ -6,8 +6,17 @@
   box-sizing: border-box;
 }
 
-.header h1 {
+.header__round {
+  float: left;
+  margin-left: 1rem;
   color: #c8c8c8;
   line-height: 3rem;
   margin: 0;
+}
+
+.header__status {
+  float: right;
+  color: #ee5f5b;
+  margin-right: 1rem;
+  line-height: 3rem;
 }

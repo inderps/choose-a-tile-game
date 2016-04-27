@@ -1,7 +1,9 @@
 import { fromJS } from 'immutable';
 import { CHOOSE_TILE } from './../constants/action-constants';
+import STATUS from './../constants/status';
 
 const initialState = {
+  status: STATUS.CHOOSE_ONE,
   currentRoundIndex: 0,
   rounds: [{
     rows: [{
@@ -41,15 +43,16 @@ const initialState = {
 function chooseTile(state, rowIndex, tileIndex) {
   const currentRoundIndex = state.get('currentRoundIndex');
   const rounds = state.get('rounds');
-  if (currentRoundIndex === rounds.size - 1) {
-    return state;
-  }
   const correctAnswer = rounds.get(currentRoundIndex).get('correctAnswer');
   if (correctAnswer.get('rowIndex') === rowIndex &&
       correctAnswer.get('tileIndex') === tileIndex) {
-    return state.set('currentRoundIndex', currentRoundIndex + 1);
+    if (currentRoundIndex === rounds.size - 1) {
+      return state.set('status', STATUS.GAME_OVER);
+    }
+    return state.set('currentRoundIndex', currentRoundIndex + 1)
+                .set('status', STATUS.CHOOSE_ONE);
   }
-  return state;
+  return state.set('status', STATUS.INCORRECT_CHOICE);
 }
 
 export default function (state = fromJS(initialState), action) {
