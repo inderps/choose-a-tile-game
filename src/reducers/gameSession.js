@@ -1,7 +1,8 @@
 import { fromJS } from 'immutable';
+import { CHOOSE_TILE } from './../constants/action-constants';
 
 const initialState = {
-  currentRoundIndex: 1,
+  currentRoundIndex: 0,
   rounds: [{
     rows: [{
       tiles: [{
@@ -23,11 +24,11 @@ const initialState = {
         url: '/tiles/211.jpg',
       }, {
         url: '/tiles/212.jpg',
-        isCorrect: true,
       }],
     }, {
       tiles: [{
         url: '/tiles/221.jpg',
+        isCorrect: true,
       }],
     }, {
       tiles: [{
@@ -56,6 +57,26 @@ const initialState = {
   }],
 };
 
-export default function (state = fromJS(initialState)) {
+function chooseTile(state, rowIndex, tileIndex) {
+  const currentRoundIndex = state.get('currentRoundIndex');
+  const currentRound = state.get('rounds').get(currentRoundIndex);
+  if (currentRound.get('rows').get(rowIndex)
+  .get('tiles').get(tileIndex)
+  .get('isCorrect')) {
+    let newCurrentRoundIndex = currentRoundIndex + 1;
+    if (newCurrentRoundIndex === state.get('rounds').size) {
+      newCurrentRoundIndex = -1;
+    }
+    return state.set('currentRoundIndex', newCurrentRoundIndex);
+  }
   return state;
+}
+
+export default function (state = fromJS(initialState), action) {
+  switch (action.type) {
+    case CHOOSE_TILE:
+      return chooseTile(state, action.rowIndex, action.tileIndex);
+    default:
+      return state;
+  }
 }
