@@ -1,2 +1,2 @@
-.grid-tile{vertical-align:middle}.grid-row{width:100%}body{margin:0;padding:0}#root,.grid-panel{width:100%}
+.grid-tile{vertical-align:middle;cursor:pointer}.grid-tile:hover{opacity:.5}.grid-row{width:100%}body{margin:0;padding:0}#root,.grid-panel{width:100%}
 /*# sourceMappingURL=app.css.map*/
